@@ -30,3 +30,5 @@ int tirardado12caras(string nombre);
 void ordenarVector (vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
 
 void agregarEstadisticas(vector<int> puntajes, vector<string> nombres, vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
+
+void mostrarganador(string jugador1, string jugador2, int tiradasJugador1, int tiradasJugador2);

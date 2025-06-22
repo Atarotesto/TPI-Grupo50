@@ -40,7 +40,7 @@ void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas)
 
         contadorPartidas++;
 		//if(){
-		//	
+		//
 		//}
     };
 
@@ -154,7 +154,7 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
 
         // cuando llegue a la suma meta, termina el ciclo
         if (sumaTotal >= numeroObjetivo) {
-			
+
             cout << " = " << sumaTotal;
             break;
         }
@@ -200,7 +200,7 @@ void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjeti
     cout << "          DADOS TIRADOS           " << endl;
 	rlutil::locate(34,15);
     cout << "** presionar solo posicion del numero a elegir **" << endl;
-	
+
     cout << endl;
 	// Centra los dados stock en pantalla
 	rlutil::locate(55,14);
@@ -228,20 +228,20 @@ bool tiradaFallada (vector<int> dadosStock, int numeroObjetivo) {
 		rlutil::locate(40,10);
         cout << "** tus dados no alcanzan para llegar a la meta **" << endl;
         cout << endl;
-	
+
 		rlutil::locate(55,14);
         for (int i : dadosStock) {
-			
+
             cout << i << " ";
         }
-		
+
         cout << " = " << totalDados;
 		rlutil::locate(66,9);
         cout << " /// " << "Meta: " << numeroObjetivo;
         cout << endl;
 		rlutil::locate(41,16);
         cout << "Pasando turno al siguiente jugador :c";
-		
+
         cout << endl << endl;
 		rlutil::locate(45,18);
        // cout << "2 - avanzar";
@@ -279,27 +279,27 @@ bool tiradaExitosa (vector<int> dadosStock, int numeroObjetivo) {
         cout << endl;
 		rlutil::locate(55,14);
         for (int i : dadosStock) {
-			
+
             cout << i << " ";
         }
-		
+
         cout << " = " << totalDados;
 		rlutil::locate(66,9);
         cout << " /// " << "Meta: " << numeroObjetivo;
-		
+
         cout << endl;
 		rlutil::locate(41,16);
         cout << "Al tener la cantidad justa ganaste 1000 puntos";
-		
+
         cout << endl << endl;
 		rlutil::locate(45,18);
         //cout << "2 - avanzar";
-		
+
         int botonAvanzar = 0;
-		
+
         while (botonAvanzar == 0) {
             int boton = getch();
-			
+
             if (boton == '2') {
 				volver();
             } else continue;
@@ -374,3 +374,15 @@ void agregarEstadisticas(vector<int> puntajes, vector<string> nombres, vector<in
     }
 }
 
+void mostrarganador(string jugador1, string jugador2, int tiradasJugador1, int tiradasJugador2){
+
+    if (tiradasJugador1 > tiradasJugador2){
+    cout << "El ganador fue: " << jugador1 << endl;
+    cout << "su puntaje fue: " <<tiradasJugador1 << endl;
+    } else{
+    cout << "El ganador fue: " << jugador2 << endl;
+    cout << "su puntaje fue: " <<tiradasJugador2 << endl;
+    }
+
+
+}
