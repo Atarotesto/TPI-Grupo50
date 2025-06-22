@@ -18,3 +18,5 @@ void volver();
 void espaciosBlancos();
 
 void mostrarReglas();
+
+void centrar();
