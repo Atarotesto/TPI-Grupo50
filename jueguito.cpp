@@ -138,12 +138,13 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
     vector<int> dadosUsados = {};
 
     if (tiradaFallada(dadosStock, numeroObjetivo)) {
-        vector<int> retorno = {sumaDadosUsados, 0, sumaTotal};
+        vector<int> retorno = {sumaDadosUsados, dadosStock.size(), sumaTotal};
         return retorno;
     };
 
     if (tiradaExitosa(dadosStock, numeroObjetivo)) {
-        vector<int> retorno = {sumaDadosUsados, 0, 10000};
+		// devuelve esos valores porque sino no suma los puntos al jugador je
+        vector<int> retorno = {1, 1, 10000};
         return retorno;
     };
 
@@ -290,6 +291,9 @@ bool tiradaExitosa (vector<int> dadosStock, int numeroObjetivo) {
 		
 		rlutil::locate(41,16);
         cout << "Al tener la cantidad justa ganaste 10000 puntos";
+		
+		rlutil::locate(41,17);
+		cout << "Felicidades!! has ganado la partida";
 		
 		rlutil::msleep(5000);
 		
