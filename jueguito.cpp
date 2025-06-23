@@ -32,16 +32,27 @@ void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas)
         resultado = turno(jugador1, dadosJugador1, tiradasJugador1);
 
         tiradasJugador1 += resultado[2] * resultado[0];
+		
+		menuEntreTirada(jugador1, tiradasJugador1, resultado[1]);
+		
+		if (tiradasJugador1 >= 10000) {
+			contadorPartidas += 5;
+			break;
+		}
 
     // turno jugador 2
         dadosJugador2 += resultado[1];
         resultado = turno(jugador2, dadosJugador2, tiradasJugador2);
         tiradasJugador2 += resultado[2] * resultado[0];
+		
+		menuEntreTirada(jugador2, tiradasJugador2, resultado[1]);
+		
+		if (tiradasJugador2 >= 10000) {
+			contadorPartidas += 5;
+			break;
+		}
 
         contadorPartidas++;
-		//if(){
-		//
-		//}
     };
 
     // pasa los puntajes finales de cada jugador
@@ -52,22 +63,22 @@ void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas)
 
     agregarEstadisticas(puntajes, nombres, puntosEstadisticas, nombresEstadisticas);
 
-    // vuelve al menu de inicio al ternminar la partida
-    espaciosBlancos();
-	rlutil::locate(50,10);
-    cout << "/// Fin del juego ///" << endl;
-	rlutil::locate(55,18);
-    cout << endl << "2 - volver a menu" << endl;
-    volver();
+    // cartel de fin de juego y vuelta al menu principal
+	mostrarganador(jugador1, jugador2, tiradasJugador1, tiradasJugador2);
 }
 
 string pedirnombre(){
     espaciosBlancos();
+	
     string nombre;
-	rlutil::locate(50,12);
-    cout << "Ingrese nombre del jugador " << endl;
-	rlutil::locate(50,13);
+	
+	rlutil::locate(45,10);
+	cout << "Ingrese nombre de jugador";
+	
+	rlutil::locate(45,12);
+    cout << "Nombre: ";
     getline(cin, nombre);
+	
     return nombre;
 }
 
@@ -85,8 +96,6 @@ void decidirPrimerTurno(string& jugador1, string& jugador2) {
             string guardado = jugador1;
             jugador1 = jugador2;
             jugador2 = guardado;
-			cout << "Jugador 1: " << jugador1;
-			cout << "Jugador 2: " << jugador1;
             break;
         } else break;
     };
@@ -147,15 +156,17 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
         mostrarDadosTirados(dadosStock, jugadorActual, numeroObjetivo, totalPuntaje);
 
         // va mostrando en pantalla los dados elegidos a sumar
-		rlutil::locate(55,17);
+		rlutil::locate(55,19);
         for (int i : dadosUsados) {
-            cout << i << " ";
+			cout << " |" << i << "| ";
         }
 
         // cuando llegue a la suma meta, termina el ciclo
         if (sumaTotal >= numeroObjetivo) {
-
+			
             cout << " = " << sumaTotal;
+			
+			rlutil::msleep(2000);
             break;
         }
 
@@ -190,31 +201,35 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
 // funcion solo estetica que muestra los dados para sumar
 // el nombre del turno actual y la meta a alcanzar
 void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjetivo, int sumaTotal) {
-	rlutil::locate(36,9);
+	
+	rlutil::locate(30,9);
     cout << "Turno: " << nombre;
-	rlutil::locate(52,9);
+	
+	rlutil::locate(55,9);
     cout <<"Puntos actuales: " << sumaTotal;
-	rlutil::locate(77,9);
-    cout << "meta: " << numeroObjetivo << endl;
-	rlutil::locate(45,12);
-    cout << "          DADOS TIRADOS           " << endl;
-	rlutil::locate(34,15);
-    cout << "** presionar solo posicion del numero a elegir **" << endl;
-
-    cout << endl;
+	
+	rlutil::locate(80,9);
+    cout << "Meta: " << numeroObjetivo;
+	
+	rlutil::locate(40,11);
+    cout << "---------------DADOS TIRADOS---------------";
+	
+	rlutil::locate(38,16);
+    cout << "** presionar solo posicion del numero a elegir **";
+	
 	// Centra los dados stock en pantalla
-	rlutil::locate(55,14);
+	rlutil::locate(40,14);
     for (int i : dadosStock) {
-        cout << i << " ";
+        cout << "|" << i << "| ";
     }
-    cout << endl;
-	rlutil::locate(48,16);
-    cout << "*************************";
-    cout << endl;
+	rlutil::locate(40,17);
+    cout << "***************************************";
 }
 
 // verifica si es posible llegar a la meta con los dados actuales
 bool tiradaFallada (vector<int> dadosStock, int numeroObjetivo) {
+	
+	espaciosBlancos();
 
     int totalDados = 0;
 
@@ -224,37 +239,22 @@ bool tiradaFallada (vector<int> dadosStock, int numeroObjetivo) {
 
     if (totalDados < numeroObjetivo) {
 		rlutil::locate(47,9);
-        cout << "TIRADA FALLIDA D:" << endl;
+        cout << "TIRADA FALLIDA D:";
 		rlutil::locate(40,10);
-        cout << "** tus dados no alcanzan para llegar a la meta **" << endl;
-        cout << endl;
-
+        cout << "** tus dados no alcanzan para llegar a la meta **";
+	
 		rlutil::locate(55,14);
         for (int i : dadosStock) {
-
-            cout << i << " ";
+			cout << " |" << i << "| ";
         }
-
+		
         cout << " = " << totalDados;
-		rlutil::locate(66,9);
         cout << " /// " << "Meta: " << numeroObjetivo;
-        cout << endl;
+		
 		rlutil::locate(41,16);
         cout << "Pasando turno al siguiente jugador :c";
-
-        cout << endl << endl;
-		rlutil::locate(45,18);
-       // cout << "2 - avanzar";
-
-        int botonAvanzar = 0;
-
-        while (botonAvanzar == 0) {
-            int boton = getch();
-
-            if (boton == '2') {
-                botonAvanzar++;
-            } else continue;
-        }
+		
+		rlutil::msleep(5000);
 
         return true;
     };
@@ -264,6 +264,8 @@ bool tiradaFallada (vector<int> dadosStock, int numeroObjetivo) {
 
 // verifica si es TIRADA EXITOSAAAAAAAA
 bool tiradaExitosa (vector<int> dadosStock, int numeroObjetivo) {
+	
+	espaciosBlancos();
 
     int totalDados = 0;
 
@@ -273,38 +275,24 @@ bool tiradaExitosa (vector<int> dadosStock, int numeroObjetivo) {
 
     if (totalDados == numeroObjetivo) {
 		rlutil::locate(47,9);
-        cout << "       TIRADA EXITOSA :D      " << endl;
+        cout << "       TIRADA EXITOSA :D      ";
 		rlutil::locate(40,10);
-        cout << "** tus dados son justos para llegar a la META **" << endl;
+        cout << "** tus dados son justos para llegar a la META **";
         cout << endl;
 		rlutil::locate(55,14);
         for (int i : dadosStock) {
-
-            cout << i << " ";
+			
+			cout << " |" << i << "| ";
         }
-
+		
         cout << " = " << totalDados;
-		rlutil::locate(66,9);
-        cout << " /// " << "Meta: " << numeroObjetivo;
-
-        cout << endl;
+        cout << "  ///  " << "Meta: " << numeroObjetivo;
+		
 		rlutil::locate(41,16);
-        cout << "Al tener la cantidad justa ganaste 1000 puntos";
-
-        cout << endl << endl;
-		rlutil::locate(45,18);
-        //cout << "2 - avanzar";
-
-        int botonAvanzar = 0;
-
-        while (botonAvanzar == 0) {
-            int boton = getch();
-
-            if (boton == '2') {
-				volver();
-            } else continue;
-        }
-
+        cout << "Al tener la cantidad justa ganaste 10000 puntos";
+		
+		rlutil::msleep(5000);
+		
         return true;
     };
 
@@ -334,18 +322,25 @@ int tirardado12caras(string nombre){
 
     resultado = dado1 + dado2;
 	rlutil::locate(50,12);
-    cout << "Arranca el jugador: " << nombre << endl;
+    cout << "Turno de: " << nombre;
+	
+	rlutil::locate(50,14);
+	cout << "----------------------------";
 	rlutil::locate(50,15);
+	cout << "Tirando Dados de 12 caras...";
+	
+	rlutil::msleep(1000);
+	
+	rlutil::locate(50,16);
+	cout << "----------------------------";
+
+	rlutil::locate(50,18);
     cout << "Numero Objetivo: "	;
-	rlutil::locate(67,15);
-    cout << dado1 << " + ";
-	rlutil::locate(72,15);
-    cout << dado2 << " = ";
-	rlutil::locate(76,15);
+    cout << "|" << dado1 << "|" << " + ";
+    cout << "|" << dado2 << "|" << " = ";
     cout << resultado;
 
-    cout << endl << endl;
-	rlutil::locate(55,18);
+	rlutil::locate(58,20);
     cout << "2 - avanzar";
 
     int botonAvanzar = 0;
@@ -374,15 +369,31 @@ void agregarEstadisticas(vector<int> puntajes, vector<string> nombres, vector<in
     }
 }
 
+// cartel para mostrar el ganador
 void mostrarganador(string jugador1, string jugador2, int tiradasJugador1, int tiradasJugador2){
-
-    if (tiradasJugador1 > tiradasJugador2){
-    cout << "El ganador fue: " << jugador1 << endl;
-    cout << "su puntaje fue: " <<tiradasJugador1 << endl;
-    } else{
-    cout << "El ganador fue: " << jugador2 << endl;
-    cout << "su puntaje fue: " <<tiradasJugador2 << endl;
-    }
-
-
+	espaciosBlancos();
+	
+	rlutil::locate(50,15);
+	cout << "----------FIN DE PARTIDA----------";
+	
+	if (tiradasJugador1 > tiradasJugador2){
+		rlutil::locate(50,18);
+		cout << "Ganador: " << jugador1;
+		rlutil::locate(50,19);
+		cout << "Puntaje final: " <<tiradasJugador1;
+		rlutil::locate(50,21);
+		cout << "FELICIDADES";
+	} else {
+		rlutil::locate(50,18);
+		cout << "Ganador: " << jugador2;
+		rlutil::locate(50,19);
+		cout << "Puntaje final: " <<tiradasJugador2;
+		rlutil::locate(50,21);
+		cout << "FELICIDADES !!!";
+	}
+	
+	rlutil::locate(55,25);
+	cout << "2 - volver a menu";
+	volver();
+	
 }

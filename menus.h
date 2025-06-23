@@ -19,4 +19,4 @@ void espaciosBlancos();
 
 void mostrarReglas();
 
-void centrar();
+void menuEntreTirada(string nombre, int puntaje, int dadosRestantes);
