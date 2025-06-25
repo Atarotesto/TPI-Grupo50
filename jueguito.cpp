@@ -138,7 +138,7 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
     vector<int> dadosUsados = {};
 
     if (tiradaFallada(dadosStock, numeroObjetivo)) {
-        vector<int> retorno = {sumaDadosUsados, dadosStock.size(), sumaTotal};
+        vector<int> retorno = {sumaDadosUsados, dadosUsados.size(), sumaTotal};
         return retorno;
     };
 
@@ -193,7 +193,7 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
     };
 
     // devuelve la cantidad de dados usados, dados restantes y suma hecha relativamente
-    vector<int> retorno = {sumaDadosUsados, dadosStock.size(), sumaTotal};
+    vector<int> retorno = {sumaDadosUsados, dadosUsados.size(), sumaTotal};
 
     return retorno;
 }

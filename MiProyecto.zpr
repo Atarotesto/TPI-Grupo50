@@ -14,10 +14,12 @@ tab_width=4
 tab_use_spaces=0
 explorer_path=.
 inherits_from=
+current_source=jueguito.cpp
 path_char=\
 [source]
 path=jueguito.cpp
-cursor=394:23
+cursor=93:0
+open=true
 [source]
 path=main.cpp
 cursor=11:0
