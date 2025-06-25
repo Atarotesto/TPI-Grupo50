@@ -29,7 +29,7 @@ void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas)
     while (contadorPartidas < 3) {
 
     // turno jugador 1
-        resultado = turno(jugador1, dadosJugador1, tiradasJugador1);
+        resultado = turno(jugador1, dadosJugador1, tiradasJugador1, contadorPartidas);
 
         tiradasJugador1 += resultado[2] * resultado[0];
 		
@@ -42,7 +42,7 @@ void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas)
 
     // turno jugador 2
         dadosJugador2 += resultado[1];
-        resultado = turno(jugador2, dadosJugador2, tiradasJugador2);
+        resultado = turno(jugador2, dadosJugador2, tiradasJugador2, contadorPartidas);
         tiradasJugador2 += resultado[2] * resultado[0];
 		
 		menuEntreTirada(jugador2, tiradasJugador2, resultado[1]);
@@ -113,13 +113,13 @@ vector<int> tiradaDados(int cantDados) {
     return dadosStock;
 }
 
-vector<int> turno(string jugador, int cantDados, int& totalPuntaje) {
+vector<int> turno(string jugador, int cantDados, int& totalPuntaje, int contadorPartidas) {
 
     int numeroMeta = tirardado12caras(jugador);
 
     vector<int> dadosStock = tiradaDados(cantDados);
 
-    vector<int> resultado = elegirDadosTirados(dadosStock, numeroMeta, jugador, totalPuntaje);
+    vector<int> resultado = elegirDadosTirados(dadosStock, numeroMeta, jugador, totalPuntaje, contadorPartidas);
 
     // resultado tendria {sumaDeDadosUsados, dadosSinUsar, sumaTotalHecha}
     return resultado;
@@ -127,7 +127,7 @@ vector<int> turno(string jugador, int cantDados, int& totalPuntaje) {
 
 // se pasa a la funcion la cantidad de numeros en un
 // vector y tambien el numero meta
-vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, string jugadorActual, int& totalPuntaje) {
+vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, string jugadorActual, int& totalPuntaje, int contadorPartidas) {
 
     // contador para la suma y dados usados
     int sumaTotal = 0;
@@ -154,7 +154,7 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
     while (largoDeLista > 0) {
 
         espaciosBlancos();
-        mostrarDadosTirados(dadosStock, jugadorActual, numeroObjetivo, totalPuntaje);
+        mostrarDadosTirados(dadosStock, jugadorActual, numeroObjetivo, totalPuntaje, contadorPartidas);
 
         // va mostrando en pantalla los dados elegidos a sumar
 		rlutil::locate(55,19);
@@ -201,7 +201,9 @@ vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, strin
 
 // funcion solo estetica que muestra los dados para sumar
 // el nombre del turno actual y la meta a alcanzar
-void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjetivo, int sumaTotal) {
+void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjetivo, int sumaTotal, int contadorPartidas) {
+	
+	contadorPartidas++;
 	
 	rlutil::locate(30,9);
     cout << "Turno: " << nombre;
@@ -209,8 +211,11 @@ void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjeti
 	rlutil::locate(55,9);
     cout <<"Puntos actuales: " << sumaTotal;
 	
-	rlutil::locate(80,9);
+	rlutil::locate(78,9);
     cout << "Meta: " << numeroObjetivo;
+	
+	rlutil::locate(88,9);
+	cout << "Ronda: " << contadorPartidas++;
 	
 	rlutil::locate(40,11);
     cout << "---------------DADOS TIRADOS---------------";
