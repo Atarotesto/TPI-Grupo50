@@ -4,10 +4,7 @@ Juego de dados para Trabajo Práctico Integrador grupal de Programación 1 en UT
 
 # DESARROLLO
 
-La consigna es realizar un juego de dados para dos jugadores donde principalmente se decide el primer jugador con un dado.\
-En cada ronda se tiran dos dados de 12 caras para definir la meta a alcanzar, luego se tiran tus dados (denominados DADOS STOCK) \
-Luego se seleccionan los dados que quieras sumar de tus dados stock y si consigues llegar a la meta sumaras puntos, transfiriendoles tus dados restantes sin sumar al contrincante.\
-Caso contrario no se sumaran puntos y pasaras la totalidad de tus dados al contrincante, basicamente saltearte el turno si no tuviste suerte :D.
+PONER REGLAS ACA 
 
 Las consignas del trabajo pueden encontrarse [aquí](https://docs.google.com/document/d/14wcjTFdxkjFMS3wXPrV8g5DC9UO2efAot9Ixvkg_KIs/edit?tab=t.0).
 
