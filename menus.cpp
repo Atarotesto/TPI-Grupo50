@@ -81,6 +81,7 @@ void mostarEstadisticas (int puntosEstadisticas[], string nombresEstadisticas[])
 }
 
 // texto de reglamento / instrucciones
+// AGREGAR REGLAS NUEVAS QUE SEAN SIMILARES A LAS DEL TP Y BORRAR ESTE COMENT
 void mostrarReglas() {
 	rlutil::locate(50,3);
 	cout << "====================================== ";

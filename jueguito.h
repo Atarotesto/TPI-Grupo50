@@ -10,9 +10,9 @@ void pedirNombre(string& jugadorUno, string& jugadorDos);
 
 void decidirPrimerTurno(string& jugadorUno, string& jugadorDos);
 
-void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int contadorPartidas, int& dadosUsados, int& puntajeRonda);
+void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int contadorPartidas, int& dadosUsados, int& puntajeRonda, int& dadoFallo);
 
-int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMeta, string jugador, int puntajeJugador, int contadorPartidas , int& cantDadosUsados);
+int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMeta, string jugador, int puntajeJugador, int contadorPartidas , int& cantDadosUsados, int& dadoFallo);
 
 void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int puntajeJugador, int contadorPartidas);
 
