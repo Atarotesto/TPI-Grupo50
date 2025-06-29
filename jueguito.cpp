@@ -193,6 +193,8 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
     int dadosUsados[cantDadosDelJugador] = {};
 	int indice = 0;
 	
+	const DADOS_JUGADOR_FALLO = cantDadosDelJugador;
+	
 	// es lo que devuelve la funcion
 	int puntaje = 0;
 
@@ -206,20 +208,6 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
     while (cantDadosDelJugador > 0) {
 		
 		int posicionElegida;
-		
-		// texto de los dados del usuario, para visualizar la posicion y poder elegirla
-		mostrarDadosTirados(dadosStock, jugador, numeroMeta, puntajeJugador, contadorPartidas); 
-		
-		rlutil::locate(38,19);
-		cout << "---------------DADOS ELEGIDOS-------------- ";
-		
-		// muestra los dados que va eligiendo el usuario para sumar
-        for (int i=0; i<10; i++) {
-			if (dadosUsados[i] > 0 && dadosUsados[i] <= 6) {
-				rlutil::locate((55 + (5*i)),21);
-				cout << "|" << dadosUsados[i] << "| ";
-			}
-        }
 		
 		if (puntaje < numeroMeta && cantDadosDelJugador == 1) {
 			rlutil::cls();
@@ -246,7 +234,21 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
 			
 			continue;
 		}
-
+		
+		// texto de los dados del usuario, para visualizar la posicion y poder elegirla
+		mostrarDadosTirados(dadosStock, jugador, numeroMeta, puntajeJugador, contadorPartidas); 
+		
+		rlutil::locate(38,19);
+		cout << "---------------DADOS ELEGIDOS-------------- ";
+		
+		// muestra los dados que va eligiendo el usuario para sumar
+        for (int i=0; i<10; i++) {
+			if (dadosUsados[i] > 0 && dadosUsados[i] <= 6) {
+				rlutil::locate((55 + (5*i)),21);
+				cout << "|" << dadosUsados[i] << "| ";
+			}
+        }
+		
         // cuando llegue a la suma meta, termina el ciclo
         if (puntaje == numeroMeta) {
             cout << " = " << puntaje;
@@ -313,6 +315,15 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
 		}
 
     }
+	
+	// si no llega de ninguna manera, es como si se le hubiese saltado el turno
+	// no suma puntos para el, ni transfiere dados al rival
+	if (puntaje < numeroMeta) {
+		dadoFallo = 0;
+		cantDadosUsados = 0;
+		cantDadosDelJugador = DADOS_JUGADOR_FALLO;
+		puntaje = 0;
+	}
 
     return puntaje;
 }

@@ -81,7 +81,7 @@ void mostarEstadisticas (int puntosEstadisticas[], string nombresEstadisticas[])
 }
 
 // texto de reglamento / instrucciones
-// AGREGAR REGLAS NUEVAS QUE SEAN SIMILARES A LAS DEL TP Y BORRAR ESTE COMENT
+// AGREGAR REGLAS NUEVAS QUE SEAN SIMILARES A LAS DEL TP Y BORRAR ESTE COMENTARIOOOOOOO
 void mostrarReglas() {
 	rlutil::locate(50,3);
 	cout << "====================================== ";
@@ -89,7 +89,24 @@ void mostrarReglas() {
 	cout << "             INSTRUCCIONES             ";
 	rlutil::locate(50,5);
 	cout << "====================================== ";
+	
+	/*
+	las reglas tienen que contener
+		- se eligen nombres
+		- se tiran dados de 12 y define meta
+		- dados stock, comienza con 6 daditos
+		- como se eligen los dados (por indice ej. el primer dado es pocision 1)
+		- se tiene que IGUALAR la meta
+		- si se pasa no suma puntos
+		- al final de la ronda se le pasa los dados USADOS al rival
+		- si no llega se le asigna un dado extra, si tampoco llega no suma puntos
+		- si no llega a pesar de todo, es un gil y se le saltea el turno sin penalizar ni pasar dados
+		- si tus dados son perfectos para llegar a la meta, ganas de una wacho
+		- gana el que haga mas puntos
+	*/
+	
 	/* CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR 
+	
 	rlutil::locate(50,7);
 	cout << " Inicia tirando 2 dados de 12 caras.   ";
 	rlutil::locate(50,8);
@@ -122,6 +139,7 @@ void mostrarReglas() {
 	cout << " ** Gana quien tenga mas puntos **     ";
 	rlutil::locate(50,27);
 	cout << "====================================== ";
+	
 	CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR */
 	
 	rlutil::locate(50,29);
