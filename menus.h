@@ -1,13 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 void mostrarCreditos();
 
-void mostarEstadisticas (vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
+void mostarEstadisticas (int& puntosEstadisticas, string& nombresEstadisticas);
 
 void mostrarMenu();
 
@@ -15,8 +14,6 @@ void mecanismoMenu();
 
 void volver();
 
-void espaciosBlancos();
+void salir(bool& botonEncendido);
 
 void mostrarReglas();
-
-void menuEntreTirada(string nombre, int puntaje, int dadosRestantes);

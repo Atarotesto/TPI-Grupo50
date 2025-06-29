@@ -3,9 +3,10 @@
 #include "conio.h"
 #include "jueguito.h"
 #include "rlutil.h"
+
 using namespace std;
 
-// solo muestra texto del menu
+// texto del menu
 void mostrarMenu() {
 	rlutil::locate(20,6);
 	cout <<"         _______   _____________  _______   ________ _____   ____  ____  _____";
@@ -32,6 +33,7 @@ void mostrarMenu() {
 	cout << " 0 - Salir";
 }
 
+// texto de creditos
 void mostrarCreditos() {
 	rlutil::locate(50,10);
     cout<<"==============================";
@@ -41,32 +43,31 @@ void mostrarCreditos() {
     cout<<"==============================";
 	rlutil::locate(48,13);
     cout<< "  Materia: Progamacion 1";
-	rlutil::locate(48,14);
-    cout<< "  Profesor: Angel Simon";
-	rlutil::locate(48,17);
-    cout<< "** Integrantes de 'Los Pibes' **";
-	rlutil::locate(48,18);
+	rlutil::locate(48,15);
+    cout<< "  * Integrantes de 'Los Pibes' *";
+	rlutil::locate(48,16);
     cout<< "  1. Tomas Centurion     - 30926";
-	rlutil::locate(48,19);
+	rlutil::locate(48,17);
     cout<< "  2. Franco Medero       - 27589";
-	rlutil::locate(48,20);
+	rlutil::locate(48,18);
     cout<< "  3. Sebastian Gomez     - 28781";
-	rlutil::locate(48,21);
+	rlutil::locate(48,19);
     cout<< "  4. Angel Diaz          - 33472";
 
-	rlutil::locate(48,25);
+	rlutil::locate(48,23);
     cout << "2 - volver";
 
     volver();
 }
 
-// solo muestra el texto de estadisticas
-void mostarEstadisticas (vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas) {
+// texto de estadisticas
+void mostarEstadisticas (int puntosEstadisticas[], string nombresEstadisticas[]) {
 	rlutil::locate(50,10);
     cout << "----------ESTADISTICAS----------";
 	
-    for(int i=0; i<nombresEstadisticas.size(); i++) {
+    for(int i=0; i<5; i++) {
 		rlutil::locate((50),(12+i));
+		if (puntosEstadisticas[i] == 0) continue;
         cout << "# " << nombresEstadisticas[i] << "  -  " << puntosEstadisticas[i] << "pts";
     }
 	
@@ -79,6 +80,7 @@ void mostarEstadisticas (vector<int>& puntosEstadisticas, vector<string>& nombre
     volver();
 }
 
+// texto de reglamento / instrucciones
 void mostrarReglas() {
 	rlutil::locate(50,3);
 	cout << "====================================== ";
@@ -86,6 +88,7 @@ void mostrarReglas() {
 	cout << "             INSTRUCCIONES             ";
 	rlutil::locate(50,5);
 	cout << "====================================== ";
+	/* CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR 
 	rlutil::locate(50,7);
 	cout << " Inicia tirando 2 dados de 12 caras.   ";
 	rlutil::locate(50,8);
@@ -118,7 +121,7 @@ void mostrarReglas() {
 	cout << " ** Gana quien tenga mas puntos **     ";
 	rlutil::locate(50,27);
 	cout << "====================================== ";
-	
+	CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR */
 	
 	rlutil::locate(50,29);
     cout << "2 - volver";
@@ -126,17 +129,16 @@ void mostrarReglas() {
     volver();
 }
 
-// es el mecanismo no toquen nada jeje
 void mecanismoMenu() {
 
-    vector<int> puntosEstadisticas = {500, 500, 500, 300};
-    vector<string> nombresEstadisticas = {"Tomas Centurion", "Franco Medero", "Sebastian Gomez", "Angel Diaz"};
+	// estas se modifican al jugar y luego se muestran en estadisticas
+    int puntosEstadisticas[10] = {};
+    string nombresEstadisticas[10] = {};
 
-    // condicion para el while del menu
-    // se va a ejecutar todo el programa hasta que salgas
-    bool condicion = true;
+    bool botonEncendido = true;
 
-    while (condicion) {
+    while (botonEncendido) {
+		
         char decision = getch();
 
         switch (decision) {
@@ -144,69 +146,64 @@ void mecanismoMenu() {
             jugar(puntosEstadisticas, nombresEstadisticas);
             break;
         case '2':
-            espaciosBlancos();
+			rlutil::cls();
             mostarEstadisticas(puntosEstadisticas, nombresEstadisticas);
             break;
         case '3':
-            espaciosBlancos();
+			rlutil::cls();
             mostrarCreditos();
             break;
         case '4':
-            espaciosBlancos();
+			rlutil::cls();
             mostrarReglas();
             break;
         case '0':
-            condicion = false;
+			salir(botonEncendido);
             break;
         default:
             break;
         }
     }
-
 }
 
-// limpia la consola, no se cambio el nombre por fiaca
-void espaciosBlancos() {
-
-   rlutil::cls();
-
-}
-
-// boton de volver, si se elige 2 se vuelve al
-// menu de inicio, sino sigue esperando que lo elijas como yo(?):c
-void volver() {
-
-    int i = 0;
-
-    while (i == 0) {
-        int volver = getch();
-
-        if (volver == '2') {
-            espaciosBlancos();
-            mostrarMenu();
-            i++;
-        }
-    }
-}
-
-// muestra los avances del jugador que tuvo el turno y los dados que transfiere
-void menuEntreTirada(string nombre, int puntaje, int dadosRestantes) {
-	
-	espaciosBlancos();
+void salir(bool& botonEncendido) {
+	rlutil::cls();
 	
 	rlutil::locate(50,10);
-	cout << "---------- FIN DEL TURNO ----------";
+	cout << "Desea salir del juego?" ;
+	rlutil::locate(50,11);
+	cout << "1 - SI  /  2 - NO";
 	
-	rlutil::locate(50,13);
-	cout << "Jugador: " << nombre;
-	rlutil::locate(50,14);
-	cout << "Puntaje total: " << puntaje;
-	rlutil::locate(50,15);
-	cout << "Dados transferidos al siguiente jugador: " << dadosRestantes;
+	bool condicion = true;
 	
-	rlutil::locate(50,17);
-	cout << "Pasando turno a siguiente jugador...";
+	while (condicion) {
+		int volver = getch();
+		
+		if (volver == '2') {
+			rlutil::cls();
+			mostrarMenu();
+			condicion = false;
+		} 
+		if (volver == '1') {
+			botonEncendido = false;
+			condicion = false;
+		}
+	}
+}
+
+// boton de volver, sin mas
+// para usar solo en la navegacion del menu
+void volver() {
+
+	bool condicion = true;
 	
-	// tiempo de pausa hasta pasar a la siguiente pantalla
-	rlutil::msleep(4500);
+	while (condicion) {
+		int volver = getch();
+		
+		if (volver == '2') {
+			rlutil::cls();
+			mostrarMenu();
+			condicion = false;
+		}
+	}
 }

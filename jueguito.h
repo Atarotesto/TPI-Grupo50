@@ -1,34 +1,35 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-void jugar(vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
+void jugar(int (&puntosEstadisticas)[10], string (&nombresEstadisticas)[10]);
 
-string pedirnombre();
+void pedirNombre(string& jugadorUno, string& jugadorDos);
 
-void decidirPrimerTurno(string& jugador1, string& jugador2);
+void decidirPrimerTurno(string& jugadorUno, string& jugadorDos);
 
-vector<int> tiradaDados(int cantDados);
+void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int contadorPartidas, int& dadosUsados, int& puntajeRonda);
 
-vector<int> turno(string jugador, int cantDados, int& totalPuntaje, int contadorPartidas);
+int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMeta, string jugador, int puntajeJugador, int contadorPartidas , int& cantDadosUsados);
 
-vector<int> elegirDadosTirados(vector<int> dadosStock, int numeroObjetivo, string jugadorActual, int& totalPuntaje, int contadorPartidas);
+void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int puntajeJugador, int contadorPartidas);
 
-void mostrarDadosTirados(vector<int> dadosStock, string nombre, int numeroObjetivo, int sumaTotal, int contadorPartidas);
+bool tiradaFallada (int dadosStock[], int numeroObjetivo);
 
-bool tiradaFallada (vector<int> dadosStock, int numeroObjetivo);
+bool tiradaExitosa (int dadosStock[], int numeroObjetivo);
 
-bool tiradaExitosa (vector<int> dadosStock, int numeroObjetivo);
+int dadoDeSeisCaras();
 
-int tirardado6caras();
+int dadoDeDoceCaras(string nombrejugador);
+	
+void compararPuntajes(int puntajes[], string nombres[], int puntosEstadisticas[], string nombresEstadisticas[]);
 
-int tirardado12caras(string nombre);
+void empate(int puntajeUno, int puntajeDos, string nombreUno, string nombreDos);
 
-void ordenarVector (vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
+void agregarEstadisticas(int puntaje, string nombre, int puntosEstadisticas[], string nombresEstadisticas[]);
 
-void agregarEstadisticas(vector<int> puntajes, vector<string> nombres, vector<int>& puntosEstadisticas, vector<string>& nombresEstadisticas);
+void mostrarganador(int puntaje, string nombre);
 
-void mostrarganador(string jugador1, string jugador2, int tiradasJugador1, int tiradasJugador2);
+void menuEntreTirada(string nombre, int puntaje, int dadosRestantes, int puntajeRonda);
