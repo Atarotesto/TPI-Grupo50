@@ -193,7 +193,7 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
     int dadosUsados[cantDadosDelJugador] = {};
 	int indice = 0;
 	
-	const DADOS_JUGADOR_FALLO = cantDadosDelJugador;
+	const int DADOS_JUGADOR_FALLO = cantDadosDelJugador;
 	
 	// es lo que devuelve la funcion
 	int puntaje = 0;
@@ -349,7 +349,7 @@ void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int p
 	rlutil::locate(38,11);
     cout << "---------------DADOS TIRADOS---------------";
 	
-	rlutil::locate(84, 11);
+	rlutil::locate(55,20);
 	cout << " |0 - Salir| ";
 	
 	rlutil::locate(40,13);
