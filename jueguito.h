@@ -10,9 +10,9 @@ void pedirNombre(string& jugadorUno, string& jugadorDos);
 
 void decidirPrimerTurno(string& jugadorUno, string& jugadorDos);
 
-void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int contadorPartidas, int& dadosUsados, int& puntajeRonda, int& dadoFallo);
+void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int contadorPartidas, int& dadosUsados, int& puntajeRonda, int& dadoFallo, int dadoJugador2);
 
-int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMeta, string jugador, int puntajeJugador, int contadorPartidas , int& cantDadosUsados, int& dadoFallo);
+int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMeta, string jugador, int puntajeJugador, int contadorPartidas , int& cantDadosUsados, int& dadoFallo,int dadoJugador2);
 
 void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int puntajeJugador, int contadorPartidas);
 
@@ -32,4 +32,4 @@ void agregarEstadisticas(int puntaje, string nombre, int puntosEstadisticas[], s
 
 void mostrarganador(int puntaje, string nombre);
 
-void menuEntreTirada(string nombre, int puntaje, int dadosRestantes, int puntajeRonda);
+void menuEntreTirada(string nombre, int puntaje, int dadosRestantes, int puntajeRonda, int dadosRecibidos);

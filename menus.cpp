@@ -67,7 +67,7 @@ void mostarEstadisticas (int puntosEstadisticas[], string nombresEstadisticas[])
 	
     for(int i=0; i<5; i++) {
 		rlutil::locate((50),(12+i));
-		if (puntosEstadisticas[i] == 0) continue;
+		if (puntosEstadisticas[i] <= 0) continue;
         cout << "# " << nombresEstadisticas[i] << "  -  " << puntosEstadisticas[i] << "pts";
     }
 	
@@ -151,7 +151,7 @@ void mostrarReglas() {
 void mecanismoMenu() {
 
 	// estas se modifican al jugar y luego se muestran en estadisticas
-    int puntosEstadisticas[10] = {};
+    int puntosEstadisticas[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     string nombresEstadisticas[10] = {};
 
     bool botonEncendido = true;
