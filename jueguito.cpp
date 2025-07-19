@@ -85,13 +85,17 @@ void jugar(int (&puntosEstadisticas)[10], string (&nombresEstadisticas)[10]) {
 void pedirNombre(string& jugadorUno, string& jugadorDos){;
 	rlutil::cls();
 	
+	string nombreUno = "asd";
+	string nombreDos = "zxdc";
+	
 	rlutil::locate(45,10);
 	cout << "Ingrese nombre de jugador 1";
 	
 	rlutil::locate(45,12);
 	cout << "Nombre: ";
 
-	getline(cin, jugadorUno);
+	getline(cin, nombreUno);
+	jugadorUno = nombreUno;
 	
 	rlutil::cls();
 	
@@ -100,8 +104,8 @@ void pedirNombre(string& jugadorUno, string& jugadorDos){;
 	
 	rlutil::locate(45,12);
     cout << "Nombre: ";
-	cin.ignore();
-    getline(cin, jugadorDos);
+    getline(cin, nombreDos);
+	jugadorDos = nombreDos;
 }
 
 void decidirPrimerTurno(string& jugadorUno, string& jugadorDos) {
@@ -199,13 +203,6 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
 	// es lo que devuelve la funcion
 	int puntaje = 0;
 
-    if (tiradaExitosa(dadosStock, numeroMeta)) {
-		cantDadosDelJugador = 1;
-		cantDadosUsados = 1;
-		puntaje = 10000;
-		return puntaje;
-    }
-
     while (cantDadosDelJugador > 0) {
 		rlutil::cls();
 		int posicionElegida;
@@ -302,6 +299,36 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
 		
     }
 	
+	if (puntaje == numeroMeta && cantDadosDelJugador == 0) {
+		rlutil::locate(47,9);
+		cout << "       TIRADA EXITOSA :D      ";
+		rlutil::locate(40,10);
+		cout << "** tus dados son justos para llegar a la META **";
+		cout << endl;
+		rlutil::locate(55,14);
+		for (int i=0; i<10; i++) {
+			if (dadosStock[i] > 0 && dadosStock[i] <= 6) {
+				cout << "|" << dadosStock[i] << "| ";
+			};
+		}
+		
+		cout << " = " << puntaje;
+		cout << "  ///  " << "Meta: " << numeroMeta;
+		
+		rlutil::locate(41,16);
+		cout << "Al tener la cantidad justa ganaste 10000 puntos";
+		
+		rlutil::locate(41,17);
+		cout << "Felicidades!! has ganado la partida";
+		
+		rlutil::msleep(5000);
+		
+		cantDadosDelJugador = 1;
+		cantDadosUsados = 1;
+		puntaje = 10000;
+		return puntaje;
+	}
+	
 	// si no llega de ninguna manera, es como si se le hubiese saltado el turno
 	// no suma puntos para el, ni transfiere dados al rival
 	if (puntaje < numeroMeta) {
@@ -358,7 +385,7 @@ void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int p
 	rlutil::locate(38,15);
     cout << "********************************************";
 }
-
+/*
 // verifica si es posible llegar a la meta con los dados actuales
 bool tiradaFallada (int dadosStock[], int numeroObjetivo) {
 	
@@ -378,6 +405,7 @@ bool tiradaFallada (int dadosStock[], int numeroObjetivo) {
 }
 
 // verifica si es TIRADA EXITOSAAAAAAAA
+
 bool tiradaExitosa (int dadosStock[], int numeroObjetivo) {
 	
 	rlutil::cls();
@@ -419,6 +447,7 @@ bool tiradaExitosa (int dadosStock[], int numeroObjetivo) {
 
     return false;
 }
+*/
 
 // tira un numero al azar entre 1 - 6
 int dadoDeSeisCaras(){

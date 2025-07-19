@@ -67,8 +67,9 @@ void mostarEstadisticas (int puntosEstadisticas[], string nombresEstadisticas[])
 	
     for(int i=0; i<5; i++) {
 		rlutil::locate((50),(12+i));
-		if (puntosEstadisticas[i] <= 0) continue;
-        cout << "# " << nombresEstadisticas[i] << "  -  " << puntosEstadisticas[i] << "pts";
+		if (puntosEstadisticas[i] != -1) {
+			cout << "# " << nombresEstadisticas[i] << "  -  " << puntosEstadisticas[i] << "pts";
+		}
     }
 	
 	rlutil::locate(50,22);
