@@ -152,14 +152,17 @@ void mostrarReglas() {
 void mecanismoMenu() {
 
 	// estas se modifican al jugar y luego se muestran en estadisticas
-    int puntosEstadisticas[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-    string nombresEstadisticas[10] = {};
+	const int VALOR_VECTOR_EST = 10;
+    int puntosEstadisticas[VALOR_VECTOR_EST] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+	
+	const int VALOR_VECTOR_NOM = 10;
+	string nombresEstadisticas[VALOR_VECTOR_NOM] = {};
 
     bool botonEncendido = true;
 
     while (botonEncendido) {
 		
-        char decision = getch();
+        char decision = getch();  // GET CHAR --> AGARRAR CARACTER
 
         switch (decision) {
         case '1':

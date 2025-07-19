@@ -15,7 +15,7 @@ void jugar(int (&puntosEstadisticas)[10], string (&nombresEstadisticas)[10]) {
 	int puntajeJugadorUno = 0;
 	int puntajeDeRondaJugadorUno = 0;
 	
-	int dadosRestadosPorFallo = 0;
+	int dadosRestadosPorFallo = 0; // restar al contrincante y sumarte a vos
 	
 	string nombreJugadorDos;
 	int dadosJugadorDos = 6;
@@ -165,7 +165,9 @@ void turno(string jugador, int& cantDadosDelJugador, int& puntajeJugador, int co
     int numeroMeta = dadoDeDoceCaras(jugador);
 	
 	// declara y tira los dados de 6 del jugador
-	int dadosStock[11] = {};
+	const int CANTIDAD_DADOS = cantDadosDelJugador;
+	int dadosStock[CANTIDAD_DADOS] = {};
+	
 	for (int i=0; i < cantDadosDelJugador; i++) {
 		int dado = dadoDeSeisCaras();
 		dadosStock[i] = dado;
@@ -285,12 +287,17 @@ int elegirDadosTirados(int& cantDadosDelJugador, int dadosStock[], int numeroMet
 			indice++;
 			
 			// Reordena la lista de dados del jugador
+			// pone los valores elegidos al final de la lista
 			for (int i = 0; i < 11; i++){
 				if ((dadosStock[i] == -1) && dadosStock[i+1] > 0) {
 					dadosStock[i] = dadosStock[i+1];
 					dadosStock[i+1] = -1;
 				}
 			}
+			
+			// 2 -1 3 4
+			// 2 3 -1 4
+			// 2 3 4 -1 
 
 			cantDadosDelJugador--;
 			cantDadosUsados++;
@@ -385,69 +392,6 @@ void mostrarDadosTirados(int dadosStock[], string jugador, int numeroMeta, int p
 	rlutil::locate(38,15);
     cout << "********************************************";
 }
-/*
-// verifica si es posible llegar a la meta con los dados actuales
-bool tiradaFallada (int dadosStock[], int numeroObjetivo) {
-	
-	int totalSumaDados = 0;
-	
-	for (int i=0; i<11; i++) {
-		if (dadosStock[i] > 0 && dadosStock[i] <= 6) {
-			totalSumaDados += dadosStock[i];
-		};
-	}
-
-    if (totalSumaDados < numeroObjetivo) {
-        return true;
-    };
-
-    return false;
-}
-
-// verifica si es TIRADA EXITOSAAAAAAAA
-
-bool tiradaExitosa (int dadosStock[], int numeroObjetivo) {
-	
-	rlutil::cls();
-
-    int totalDados = 0;
-
-	for (int i=0; i<11; i++) {
-		if (dadosStock[i] > 0 && dadosStock[i] <= 6) {
-			totalDados += dadosStock[i];
-		};
-	}
-	
-    if (totalDados == numeroObjetivo) {
-		rlutil::locate(47,9);
-        cout << "       TIRADA EXITOSA :D      ";
-		rlutil::locate(40,10);
-        cout << "** tus dados son justos para llegar a la META **";
-        cout << endl;
-		rlutil::locate(55,14);
-		for (int i=0; i<10; i++) {
-			if (dadosStock[i] > 0 && dadosStock[i] <= 6) {
-				cout << "|" << dadosStock[i] << "| ";
-			};
-		}
-		
-        cout << " = " << totalDados;
-        cout << "  ///  " << "Meta: " << numeroObjetivo;
-		
-		rlutil::locate(41,16);
-        cout << "Al tener la cantidad justa ganaste 10000 puntos";
-		
-		rlutil::locate(41,17);
-		cout << "Felicidades!! has ganado la partida";
-		
-		rlutil::msleep(5000);
-		
-        return true;
-    };
-
-    return false;
-}
-*/
 
 // tira un numero al azar entre 1 - 6
 int dadoDeSeisCaras(){
@@ -521,7 +465,7 @@ void compararPuntajes(int puntajes[], string nombres[], int puntosEstadisticas[]
 		mostrarganador(puntajes[1], nombres[1]);
 	}
 }
-//Ver mostrar estadisticas puntos 0	
+
 // agrega al ganador a Estadisticas, el orden no es de mayor a menor
 // solo lo agrega al final de la lista je
 void agregarEstadisticas(int puntaje, string nombre, int puntosEstadisticas[], string nombresEstadisticas[]) {
