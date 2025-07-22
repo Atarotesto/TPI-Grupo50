@@ -91,57 +91,42 @@ void mostrarReglas() {
 	rlutil::locate(50,5);
 	cout << "====================================== ";
 	
-	/*
-	las reglas tienen que contener
-		- se eligen nombres
-		- se tiran dados de 12 y define meta
-		- dados stock, comienza con 6 daditos
-		- como se eligen los dados (por indice ej. el primer dado es pocision 1)
-		- se tiene que IGUALAR la meta
-		- si se pasa no suma puntos
-		- al final de la ronda se le pasa los dados USADOS al rival
-		- si no llega se le asigna un dado extra, si tampoco llega no suma puntos
-		- si no llega a pesar de todo, es un gil y se le saltea el turno sin penalizar ni pasar dados
-		- si tus dados son perfectos para llegar a la meta, ganas de una wacho
-		- gana el que haga mas puntos
-	*/
-	
-	/* CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR 
-	
 	rlutil::locate(50,7);
-	cout << " Inicia tirando 2 dados de 12 caras.   ";
+	cout << "Al inicio se decidira quien comienza el";
 	rlutil::locate(50,8);
-	cout << " Sumados seran tu numero objetivo.     ";
-	rlutil::locate(50,10);
-	cout << " Luego tiras tus dados de 6 caras.     ";
+	cout << "juego tirando 2 dados de 12 caras, quien";
+	rlutil::locate(50,9);
+	cout << "saque el mayor numero es quien arranca.";
 	rlutil::locate(50,11);
-	cout << " Elegi una combinacion que iguale      ";
+	cout << "Se tiraran 2 dados de 12 caras, la suma";
 	rlutil::locate(50,12);
-	cout << " el numero objetivo y:                 ";
+	cout << "de los numeros sacados es el objetivo a alcanzar.";
 	rlutil::locate(50,14);
-	cout << "  ** Si alcanzas la meta:              ";
+	cout << "Para alcanzar la meta se tiraran dados de 6 caras";
 	rlutil::locate(50,15);
-	cout << "       suma puntos y transfieres los   ";
+	cout << "y se tendran que elegir los numeros resultantes";
 	rlutil::locate(50,16);
-	cout << "       restantes al rival              ";
-	rlutil::locate(50,18);
-	cout << "  ** Si fallas:                        ";
+	cout << "hasta alcanzar el numero meta, si llegas a la meta";
+	rlutil::locate(50,17);
+	cout << "los dados utilizados se los transferis al rival.";
 	rlutil::locate(50,19);
-	cout << "    no sumaras puntos y daras          ";
+	cout << "En caso de no llegar a la meta, ya sea por sumar";
 	rlutil::locate(50,20);
-	cout << "    todos tus dados al rival           ";
-	rlutil::locate(50,22);
-	cout << "  ** Tirada Exitosa                    ";
+	cout << "de menos o de mas o saltear tu turno con la opcion";
+	rlutil::locate(50,21);
+	cout << "0 (cero), se te cedera un dado de tu rival ";
 	rlutil::locate(50,23);
-	cout << "    si sumando todos tus dados es      ";
+	cout << "Si llegases al numero objetivo y quedaste sin dados";
 	rlutil::locate(50,24);
-	cout << "    exactamente igual a la meta, ganas ";
+	cout << "automaticamente ganas el juego y si te conceden 1000 puntos";
 	rlutil::locate(50,26);
-	cout << " ** Gana quien tenga mas puntos **     ";
+	cout << "Los puntos se calculan multiplicando el objetivo con los dados usados";
 	rlutil::locate(50,27);
+	cout << "El juego lo gana quien acumule mayor cantidad de puntos";
+	rlutil::locate(50,28);
 	cout << "====================================== ";
 	
-	CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR CAMBIAR */
+
 	
 	rlutil::locate(50,29);
     cout << "2 - volver";
